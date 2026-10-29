@@ -1,1 +1,32 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080d0b"><title>Das Echo der Tiefe</title><link rel="stylesheet" href="style.css"></head><body><main><header><h1>DAS ECHO DER TIEFE</h1><div>PROJEKT ORPHEUS · TERMINAL 01 · 1987</div></header><section id="scene" aria-label="Raumansicht"></section><section id="screen" role="log" aria-live="polite"></section><form id="form" autocomplete="off"><label for="command">&gt;</label><input id="command" aria-label="Befehl" autocapitalize="off" spellcheck="false" placeholder="Befehl eingeben …"><button>ENTER</button></form><nav><button data-cmd="UMSEHEN">UMSEHEN</button><button data-cmd="INVENTAR">INVENTAR</button><button data-cmd="KARTE">KARTE</button><button data-cmd="HILFE">HILFE</button></nav></main><dialog id="map-dialog" aria-labelledby="map-title"><div class="map-heading"><h2 id="map-title">KARTE · ORPHEUS</h2><button id="close-map" aria-label="Karte schließen">SCHLIESSEN ×</button></div><p id="map-progress"></p><p>● Dein Standort · Linien zeigen bekannte Verbindungen · Pfeile zeigen die Wegrichtung.</p><div id="map-content"></div><p>Unentdeckte Räume bleiben verborgen. ESC schließt die Karte.</p></dialog><script src="game.js"></script></body></html>
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="theme-color" content="#0b100f"><meta name="description" content="Ein vollständiges Mystery-Textadventure in der Forschungsanlage Orpheus. 42 Räume, vier Enden und eine Geschichte unter der Oberfläche.">
+ <title>Das Echo der Tiefe · Orpheus</title><link rel="stylesheet" href="style.css"><link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+<header class="masthead"><div><span class="eyebrow">PROJEKT ORPHEUS / 1987</span><h1>DAS ECHO DER TIEFE</h1></div><div class="header-right"><span class="signal-light"></span><span id="connection">LOKALES TERMINAL</span><button id="sound" aria-pressed="false" title="Leise Terminaltöne ein- oder ausschalten">TON AUS</button></div></header>
+<main>
+ <section class="scene-panel" aria-label="Aktueller Raum">
+  <div class="room-heading"><div><p id="level" class="eyebrow"></p><h2 id="room-name"></h2></div><span id="room-number" class="plate"></span></div>
+  <div id="scene" class="scene"><img id="room-image" alt="" fetchpriority="high"><div id="hotspots"></div><div class="scene-grain" aria-hidden="true"></div><button id="enlarge-image" class="image-enlarge" aria-label="Raumbild vergrößern">⤢</button><span id="image-error" hidden>Die Raumaufnahme konnte nicht geladen werden.</span></div>
+  <p class="scene-caption">RAUMAUFNAHME <span>Markierungen anklicken, um Fundorte zu untersuchen.</span></p>
+  <section class="room-controls" aria-labelledby="paths-title"><h3 id="paths-title">WEGE</h3><div id="exits"></div></section>
+  <section class="room-controls" aria-labelledby="objects-title"><h3 id="objects-title">IN DIESEM RAUM</h3><div id="objects"></div></section>
+  <div class="status-strip"><span id="time"></span><span id="health"></span><span id="power"></span><span id="discovered"></span></div>
+ </section>
+ <section class="terminal-panel" aria-label="Textadventure">
+  <div class="terminal-heading"><span><span class="signal-light"></span> ORPHEUS / EINGABE</span><span id="save-status" role="status">BEREIT</span></div>
+  <div id="screen" role="log" aria-live="polite" aria-relevant="additions text" tabindex="0"></div>
+  <div id="context-actions"></div>
+  <form id="form" autocomplete="off"><label for="command" aria-label="Befehl">›</label><input id="command" name="command" aria-label="Befehl eingeben" placeholder="Was möchte ich tun?" autocapitalize="off" spellcheck="false"><button type="submit" aria-label="Befehl ausführen">↵</button></form>
+  <p class="input-help">Freie Texteingabe · ↑ letzter Befehl · HILFE für Beispiele</p>
+ </section>
+</main>
+<nav class="toolbar" aria-label="Spielmenü"><button data-command="umsehen">UMSEHEN</button><button data-command="inventar">INVENTAR <span id="inventory-count">0</span></button><button data-command="karte">KARTE</button><button data-command="tagebuch">TAGEBUCH</button><button data-command="tipp">TIPP</button><button data-command="hilfe">HILFE</button><button id="open-save">SPIELSTAND</button></nav>
+<footer>Ein Mystery-Textadventure · 42 Räume · Vier Entscheidungen, die bleiben.</footer>
+<dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-header"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="Fenster schließen">SCHLIESSEN ×</button></div><div id="dialog-content"></div></dialog>
+<input id="import-file" type="file" accept="application/json,.json" hidden>
+<script src="world.js"></script><script src="engine.js"></script><script src="app.js"></script>
+</body></html>
